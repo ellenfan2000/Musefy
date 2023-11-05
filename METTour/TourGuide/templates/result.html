@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<h3> Your tour is as followings: 🎉</h3>
+ <!-- <div id="list-example" class="list-group">
+  {% for piece in response %}
+    <a class="list-group-item list-group-item-action" href="#list-item-{{ forloop.counter }}">{{ piece.ArtPiece }}</a>
+  {% endfor %}
+  </div>  -->
+  <p> {{ response.0.Intro }}</p>
+  <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+    {% for piece in response %}
+      <h4 id="#list-item-{{ forloop.counter }}">{{ forloop.counter }}. {{ piece.ArtPiece }}</h4>
+      <p style="display: inline;"><b>- Artist:</b> {{ piece.Artist }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      <p style="display: inline;"><b>- Year:</b> {{ piece.Year }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      <p style="display: inline;"><b>- Region: </b>{{ piece.Geo }}</p>
+      {% if piece.Story %}
+      <p><b>- Story:</b> {{ piece.Story }}</p>
+      {% endif %}
+      {% if piece.StopTime %}
+      <p><b>- Estimated Stop Time: </b>{{ piece.StopTime }}</p>
+      {% endif %}
+      <p><a href="{{ piece.OfficialLink }}" target="_blank">Learn more</a></p>
+    {% endfor %}
+  </div>
+  
+{% endblock %}
